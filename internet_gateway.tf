@@ -1,4 +1,4 @@
-# Creating the internet Gateway
+# Criando o internet gateway
 
 resource "aws_internet_gateway" "internet_gateway" {
   depends_on = [
