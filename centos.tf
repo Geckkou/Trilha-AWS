@@ -10,7 +10,7 @@ resource "aws_security_group" "sg_nginx" {
   vpc_id      = aws_vpc.vpc.id
 
   ingress {
-    cidr_blocks = ["179.55.111.58/32"]
+    cidr_blocks = ["0.0.0.0/0"]
     description = "Allow TCP"
     from_port   = 80
     protocol    = "tcp"
@@ -18,12 +18,20 @@ resource "aws_security_group" "sg_nginx" {
   }
 
   ingress {
-    cidr_blocks = ["179.55.111.58/32"]
+    cidr_blocks = ["0.0.0.0/0"]
     description = "Allow TCP"
     from_port   = 443
     protocol    = "tcp"
     to_port     = 443
   }
+
+  ingress {
+    cidr_blocks = [ "179.55.111.58/32" ]
+    description = "Allow ssh"
+    from_port = 22
+    protocol = "tcp"
+    to_port = 22
+  } 
 
   egress {
     cidr_blocks = ["0.0.0.0/0"]
