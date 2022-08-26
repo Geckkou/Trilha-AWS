@@ -26,12 +26,12 @@ resource "aws_security_group" "sg_nginx" {
   }
 
   ingress {
-    cidr_blocks = [ "179.55.111.58/32" ]
+    cidr_blocks = ["179.55.111.58/32"]
     description = "Allow ssh"
-    from_port = 22
-    protocol = "tcp"
-    to_port = 22
-  } 
+    from_port   = 22
+    protocol    = "tcp"
+    to_port     = 22
+  }
 
   egress {
     cidr_blocks = ["0.0.0.0/0"]
@@ -53,15 +53,15 @@ resource "aws_instance" "centos" {
     aws_security_group.sg_nginx
   ]
 
-  ami = var.amis["ubuntu-east-1"]
-  instance_type = "t2.micro"
-  key_name = var.key_name
+  ami                    = var.amis["ubuntu-east-1"]
+  instance_type          = "t2.micro"
+  key_name               = var.key_name
   vpc_security_group_ids = ["${aws_security_group.sg_nginx.id}"]
-  subnet_id = aws_subnet.public_subnet.id
+  subnet_id              = aws_subnet.public_subnet.id
 
   tags = {
     Name = "Server CentOS 8"
   }
 
-  user_data = "${file("user-data-nginx.sh")}"
+  user_data = file("user-data-nginx.sh")
 }

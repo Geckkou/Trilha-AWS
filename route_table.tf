@@ -15,7 +15,7 @@ resource "aws_route_table" "route_table" {
 
   tags = {
     Name = "route-table"
-  } 
+  }
 }
 
 # Associando a route table na subnet publica
@@ -25,6 +25,6 @@ resource "aws_route_table_association" "associate_routetable_to_public_subnet" {
     aws_route_table.route_table
   ]
 
-  subnet_id = aws_subnet.public_subnet.id
+  subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.route_table.id
 }

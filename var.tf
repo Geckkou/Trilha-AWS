@@ -2,7 +2,7 @@ variable "amis" {
   type = map(string)
 
   default = {
-    "ubuntu-east-1" = "ami-0d6e9a57f6259ba3a" 
+    "ubuntu-east-1" = "ami-0d6e9a57f6259ba3a"
   }
 }
 

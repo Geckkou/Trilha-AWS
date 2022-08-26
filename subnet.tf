@@ -1,4 +1,4 @@
-#Criando ubnets pública e privada 
+#Criando subnets pública 
 
 resource "aws_subnet" "public_subnet" {
   depends_on = [
