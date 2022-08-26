@@ -40,6 +40,10 @@ resource "aws_security_group" "sg_nginx" {
     protocol    = "-1"
     to_port     = 0
   }
+
+  tags = {
+    Name = "sg nginx"
+  }
 }
 
 #Criando instância ec2 CentOs 8 com nginx
@@ -58,4 +62,6 @@ resource "aws_instance" "centos" {
   tags = {
     Name = "Server CentOS 8"
   }
+
+  user_data = "${file("user-data-nginx.sh")}"
 }
