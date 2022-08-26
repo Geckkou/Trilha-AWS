@@ -33,3 +33,21 @@ resource "aws_security_group" "sg_nginx" {
     to_port     = 0
   }
 }
+
+#Criando instância ec2 CentOs 8 com nginx
+
+resource "aws_instance" "centos" {
+  depends_on = [
+    aws_security_group.sg_nginx
+  ]
+
+  ami = var.amis["ubuntu-east-1"]
+  instance_type = "t2.micro"
+  key_name = var.key_name
+  vpc_security_group_ids = ["${aws_security_group.sg_nginx.id}"]
+  subnet_id = aws_subnet.public_subnet.id
+
+  tags = {
+    Name = "Server CentOS 8"
+  }
+}
