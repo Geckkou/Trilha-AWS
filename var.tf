@@ -9,3 +9,8 @@ variable "amis" {
 variable "key_name" {
   default = "aws-key"
 }
+
+variable "base_path" {
+  default = "/home/vertigo-tecmobile/Programação/VsCode/terraform-codes/trilha-aws/"
+}
+
