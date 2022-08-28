@@ -58,10 +58,9 @@ resource "aws_instance" "centos" {
   key_name               = var.key_name
   vpc_security_group_ids = ["${aws_security_group.sg_nginx.id}"]
   subnet_id              = aws_subnet.public_subnet.id
+  user_data              = file("user-data-nginx.sh")
 
   tags = {
     Name = "Server CentOS 8"
   }
-
-  user_data = file("user-data-nginx.sh")
 }
